@@ -3,7 +3,7 @@ Live Update
 
 Adds the ability to live edit post & meta data.
 
-![Overview](https://www.dropbox.com/s/4nziqobjdr5g8lm/Screenshot%202014-04-22%2010.46.05.png)
+![Overview](http://www.stomptheweb.co.uk/wp-content/uploads/2014/04/Screenshot-2014-04-22-10.46.05.png)
 
 ## Usage
 
@@ -22,7 +22,7 @@ function my_meta_box_array($meta_boxes) {
     $meta_boxes = array();
 
     $fields = array(
-        array( 'type' => 'title', 'title' => 'Circuit Title', 'selector' => 'h1.entry-title'),
+        array( 'type' => 'title', 'title' => 'Post Title', 'selector' => 'h1.entry-title'),
         array( 'type' => 'text', 'id' => 'my_post_meta', 'title' => 'Please update me', 'selector' => '.my-post_meta')
     );
 
