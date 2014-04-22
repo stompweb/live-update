@@ -23,7 +23,7 @@ function lu_update_value() {
 			$post_data = array(
       			'ID'			=> $post_id,
       			'post_title' 	=> sanitize_text_field($new_value),
-      			'post_name' 	=> sanitize_title($new_value)
+      			'post_name' 	=> sanitize_title_with_dashes($new_value)
   			);
 
 			wp_update_post( $post_data );
