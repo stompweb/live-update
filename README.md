@@ -42,7 +42,7 @@ add_filter('lu_meta_box_array', 'my_meta_box_array');
 
 Adds the ability to manage content on the front end. You can pick a built in field, or a add your own. You can then update items using AJAX and if you choose a CSS selector then the page will live update.
 
-The aim of the plugin is to be able to quickly update simple data in the front end. Currently complex data handling is out of scope until this has been achieved. Complex data handling in the backend should probably be done in the backend using a plugin such as [Custom Meta Boxes](https://github.com/humanmade/Custom-Meta-Boxes/)
+The aim of the plugin is to be able to quickly update simple data in the front end. Currently complex data handling is out of scope until this has been achieved. Complex data handling should probably be done in the backend using a plugin such as [Custom Meta Boxes](https://github.com/humanmade/Custom-Meta-Boxes/)
 
 ## Contribute
 
