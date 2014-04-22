@@ -1,15 +1,12 @@
 <?php 
 
-function meta_box_array($meta_boxes) {
+function my_meta_box_array($meta_boxes) {
 
-	$meta_boxes = array();
+    $meta_boxes = array();
 
-	$authors = lu_get_users_for_authors();
-
-	$fields = array(
-		array( 'type' => 'title', 'title' => 'Circuit Title', 'selector' => 'h1.entry-title'),
-        array( 'type' => 'featured' ),
-        array( 'type' => 'author', 'id' => 'author', 'users' => $authors),
+    $fields = array(
+        array( 'type' => 'title', 'title' => 'Circuit Title', 'selector' => 'h1.entry-title'),
+        array( 'type' => 'text', 'id' => 'my_post_meta', 'title' => 'Please update me', 'selector' => '.my-post_meta'),
     );
 
     $meta_boxes[] = array(
@@ -21,4 +18,4 @@ function meta_box_array($meta_boxes) {
 
 }
 
-add_filter('lu_meta_box_array', 'meta_box_array');
+add_filter('lu_meta_box_array', 'my_meta_box_array');
