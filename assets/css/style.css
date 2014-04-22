@@ -1,0 +1,166 @@
+.customiser-open-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  color: #666;
+  background-color: #DDD;
+  border-radius: 5px;
+}
+.customiser-open-button:hover {
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+body.customiser-open {
+  margin-left: 510px;
+}
+.customiser {
+  position: fixed;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 510px;
+  min-height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: #FFF;
+  border-right: 1px solid #DDD;
+}
+.customiser .post-type-title {
+  padding: 20px 10px;
+  background-color: #EEE;
+  border-bottom: 1px solid #DDD;
+}
+.customiser .post-type-title h2 {
+  margin: 0;
+  padding: 0;
+  font-size: 150%;
+}
+.customiser p {
+  padding: 10px;
+}
+.customiser .customiser-close-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #666;
+  background-color: #DDD;
+  border-radius: 5px;
+}
+.customiser .customiser-close-button:hover {
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+.meta-boxes .meta-box {
+  padding: 15px 10px;
+  border-bottom: 1px solid #EEEEEE;
+}
+.meta-boxes .meta-box h3 {
+  margin: 0 0 15px 0;
+  padding: 0;
+  font-size: 18px;
+}
+.meta-boxes .meta-box span {
+  float: right;
+}
+.meta-boxes .meta-box input,
+.meta-boxes .meta-box textarea,
+.meta-boxes .meta-box select {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #DDD;
+  width: 100%;
+}
+.meta-boxes .meta-box input.error,
+.meta-boxes .meta-box textarea.error,
+.meta-boxes .meta-box select.error {
+  border: 1px solid red;
+}
+.meta-boxes .meta-box input:disabled,
+.meta-boxes .meta-box textarea:disabled,
+.meta-boxes .meta-box select:disabled {
+  background: #EEE;
+}
+.meta-boxes .meta-box input[type=number] {
+  width: 50px;
+}
+.meta-boxes .meta-box .wp-editor-wrap .wp-media-buttons {
+  margin-bottom: 5px;
+}
+.meta-boxes .meta-box .wp-editor-wrap .wp-editor-container {
+  border: 1px solid #EEE;
+}
+.meta-boxes .meta-box .wp-editor-wrap .mce-statusbar {
+  display: none;
+}
+.meta-boxes .meta-box .upload_image_button {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  background: #FFF;
+  border: 2px dashed #EEE;
+  padding: 100px 0;
+  font-size: 20px;
+}
+.meta-boxes .meta-box .upload_image_button.existing-image {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  top: -100px;
+  right: 0;
+  margin-top: 100px;
+  background: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+.meta-boxes .meta-box .featured-image {
+  margin: 20px 0 10px 0;
+  max-width: 300px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.meta-boxes .meta-box .dashicons-yes {
+  color: green;
+  font-size: 130%;
+}
+.meta-boxes .meta-box .dashicons-star-empty:hover,
+.meta-boxes .meta-box .dashicons-star-filled:hover {
+  cursor: pointer;
+}
+.meta-boxes .meta-box .dashicons-star-filled {
+  color: gold;
+}
+.meta-boxes .meta-box .dashicons-update:hover {
+  cursor: pointer;
+}
+.meta-boxes .meta-box .loading,
+.meta-boxes .meta-box .dashicons-yes {
+  display: none;
+}
+.ui-datepicker {
+  border: 1px solid #EEE;
+  border-radius: 0;
+  padding: 10px;
+}
+.ui-datepicker .ui-datepicker-header {
+  border-radius: 0;
+  background: #EEE;
+}
+.ui-datepicker .ui-state-default {
+  background: #EEE;
+}
+.ui-datepicker .ui-state-active {
+  background: #FFF;
+}
+.ui-datepicker .ui-corner-all {
+  border-radius: 0;
+}
+body.admin-bar .customiser {
+  margin-top: 32px;
+}
+body.admin-bar .customiser-close-button {
+  bottom: 42px;
+}
