@@ -118,6 +118,6 @@ function lu_status_icons($field) { ?>
 
 	<span class="dashicons dashicons-update lu-update" data-field="<?php echo $field['id']; ?>" data-type="<?php echo $field['type']; ?>" data-selector="<?php echo $field['selector']; ?>"></span>
 	<span class="dashicons dashicons-yes" id="success-<?php echo $field['id']; ?>"></span>
-	<span class="loading" id="loading-<?php echo $field['id']; ?>"><img src="<?php echo lu_PLUGIN_URL . '/assets/images/ajax-loader.gif'; ?>"></span>
+	<span class="loading" id="loading-<?php echo $field['id']; ?>"><img src="<?php echo LU_PLUGIN_URL . '/assets/images/ajax-loader.gif'; ?>"></span>
 
 <?php } ?>
