@@ -1,13 +1,51 @@
+// Document.ready is too early for this
+window.onload = function () {
+
+    tinyMCE.activeEditor.onKeyUp.add( function() {
+
+        $(this).parent().find('.dashicons-yes, .loading').hide();
+        
+        var new_value = this.getContent();
+        var selector_id = this.id;
+
+        var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
+
+        // Need to hide buttons
+
+        jQuery(selector).html(new_value);
+        
+    });
+
+    tinymce.activeEditor.onChange.add( function() {
+        
+        var new_value = this.getContent();
+        var selector_id = this.id;
+
+        var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
+
+        // Need to hide buttons
+
+        jQuery(selector).html(new_value);
+        
+    });
+}
+
 jQuery(document).ready(function($){
 
+    // If there's a datepicker field then instantiate it
     if ( $('.datepicker').length > 0 ) {
         $('.datepicker').datepicker();
     }
 
+    // Allow the customiser to be resized
     if ( $('.customiser').length > 0 ) {
         $('.customiser' ).resizable({
             maxWidth: 700,
-            minWidth: 300
+            minWidth: 300,
+            resize: function( event, ui ) {
+                $('body.customiser-open').css('margin-left', ui.size.width);
+                setCookie("customiser-width",ui.size.width, 365);
+            }
         });
     }
 
@@ -16,6 +54,13 @@ jQuery(document).ready(function($){
     if('open' == customiserState) {
         $( ".customiser" ).show();
         $( "body" ).addClass( "customiser-open" );
+    }
+
+    // If the width has been changed then set it with CSS
+    var customiserWidth = getCookie("customiser-width");
+    if (customiserWidth > 0) {
+        $('body.customiser-open').css('margin-left', customiserWidth);
+        $('.customiser').css('width', customiserWidth);
     }
 
     $( ".customiser-open-button, .customiser-close-button" ).click(function() {
@@ -45,6 +90,8 @@ jQuery(document).ready(function($){
         $(selector).text(new_value);
             
     });
+
+    
 
     $( ".meta-box select" ).change(function() {
         
