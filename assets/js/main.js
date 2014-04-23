@@ -3,14 +3,10 @@ window.onload = function () {
 
     tinyMCE.activeEditor.onKeyUp.add( function() {
 
-        $(this).parent().find('.dashicons-yes, .loading').hide();
-        
         var new_value = this.getContent();
         var selector_id = this.id;
 
         var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
-
-        // Need to hide buttons
 
         jQuery(selector).html(new_value);
         
@@ -22,8 +18,6 @@ window.onload = function () {
         var selector_id = this.id;
 
         var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
-
-        // Need to hide buttons
 
         jQuery(selector).html(new_value);
         
@@ -235,6 +229,7 @@ jQuery(document).ready(function($){
 
         // When an image is selected, run a callback.
         file_frame.on( 'select', function() {
+            
             // We set multiple to false so only get one image from the uploader
             attachment = file_frame.state().get('selection').first().toJSON();
 
@@ -243,6 +238,10 @@ jQuery(document).ready(function($){
             } else {
                 $('.featured-image').attr("src", attachment.url);
             }
+
+            // Live Update
+            $('.attachment-post-thumbnail').attr("src", attachment.url);
+
             $('input[name=featured-image-id]').val(attachment.id);
 
             $('.upload_image_button').hide();
