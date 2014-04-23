@@ -1,27 +1,34 @@
 // Document.ready is too early for this
 window.onload = function () {
 
-    tinyMCE.activeEditor.onKeyUp.add( function() {
+    // Only do this if there is a tinyMCE defined
+    if (typeof(tinyMCE) != "undefined") {
 
-        var new_value = this.getContent();
-        var selector_id = this.id;
+        if (tinyMCE.activeEditor == null || tinyMCE.activeEditor.isHidden() != false) {
 
-        var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
+            tinyMCE.activeEditor.onKeyUp.add( function() {
 
-        jQuery(selector).html(new_value);
-        
-    });
+                var new_value = this.getContent();
+                var selector_id = this.id;
 
-    tinymce.activeEditor.onChange.add( function() {
-        
-        var new_value = this.getContent();
-        var selector_id = this.id;
+                var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
 
-        var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
+                jQuery(selector).html(new_value);
+    
+            });
 
-        jQuery(selector).html(new_value);
-        
-    });
+            tinymce.activeEditor.onChange.add( function() {
+    
+                var new_value = this.getContent();
+                var selector_id = this.id;
+
+                var selector = jQuery("span[data-field=" + selector_id + "]").data('selector');
+
+                jQuery(selector).html(new_value);
+    
+            });
+        }
+    }
 }
 
 jQuery(document).ready(function($){
@@ -82,6 +89,16 @@ jQuery(document).ready(function($){
 
         // Live update the text
         $(selector).text(new_value);
+
+        // Scroll to where the element is
+        var pos = $(selector).offset();
+
+        // Offset for the admin bar
+        if ($('#wpadminbar').length > 0) {
+            pos.top = pos.top - 40;
+        }
+
+        $('body').animate({ scrollTop: pos.top });
             
     });
 
