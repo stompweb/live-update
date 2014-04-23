@@ -22,10 +22,12 @@ body.customiser-open {
   z-index: 9999;
   width: 510px;
   min-height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
   background-color: #FFF;
   border-right: 1px solid #DDD;
+}
+.customiser .customiser-inner {
+  overflow-y: scroll;
+  height: 100%;
 }
 .customiser .post-type-title {
   padding: 20px 10px;
