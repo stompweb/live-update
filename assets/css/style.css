@@ -89,6 +89,16 @@ body.customiser-open {
 .meta-boxes .meta-box input[type=number] {
   width: 50px;
 }
+.meta-boxes .meta-box input[type=checkbox] {
+  float: left;
+  display: inline-block;
+  width: 30px;
+}
+.meta-boxes .meta-box .checkbox-field {
+  clear: left;
+  margin-bottom: 5px;
+  width: 100%;
+}
 .meta-boxes .meta-box .wp-editor-wrap .wp-media-buttons {
   margin-bottom: 5px;
 }

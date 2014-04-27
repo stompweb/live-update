@@ -131,6 +131,8 @@ jQuery(document).ready(function($){
         var field_id = $this.data('field');
         var selector = $this.data('selector');
         var field_type = $this.data('type');
+        var taxonomy = $this.data('taxonomy');
+        var new_value = '';
 
         switch (field_type) {
 
@@ -159,7 +161,15 @@ jQuery(document).ready(function($){
                 if ( true == $(checkbox).prop('checked') ) {
                    new_value = 1; 
                 }
-                break; 
+                break;
+
+            case "taxonomy":
+
+                $('input[name^="lu_' + field_id + '"]:checked').each(function(i){
+                    new_value += $(this).val() + ',';
+                });
+                new_value = new_value.substring(0, new_value.length - 1);
+                break;                 
 
             case "featured":
                 var star = $("#lu_featured");
@@ -203,7 +213,8 @@ jQuery(document).ready(function($){
             post_id: lu.post_id,
             field_id: field_id,
             field_type: field_type,
-            new_value: new_value
+            new_value: new_value,
+            taxonomy: taxonomy
         };
 
         $.post(lu.ajaxurl, data, function(response) {

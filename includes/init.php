@@ -100,8 +100,29 @@ function lu_add_customiser() {
 											break;	
 
 							    		case "checkbox": ?>
-							        		<input type="checkbox" name="lu_<?php echo $field['id']; ?>" <?php checked( absint(get_post_meta(get_the_ID(), $field['id'], true), 1, true )); ?>>
+							        		<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" <?php checked( absint(get_post_meta(get_the_ID(), $field['id'], true), 1, true )); ?>>
 							        		<?php break;
+
+										case "taxonomy": 
+											global $post;
+
+											$post_terms = wp_get_post_terms( $post->ID, $field['taxonomy'], array("fields" => "ids"));
+
+											$terms = get_terms($field['taxonomy'], 'hide_empty=0'); 
+
+											foreach ($terms as $term) { ?>
+
+												<div class="checkbox-field">
+
+													<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $term->term_id; ?>" 
+														<?php if (in_array($term->term_id, $post_terms)) { echo 'checked'; } ?>
+													>
+													<?php echo $term->name; ?>
+
+												</div>
+
+											<?php }
+											break;	
 							    
 							    		case "select": ?>
 											<select class="lu-field" name="lu_<?php echo $field['id']; ?>">

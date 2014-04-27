@@ -77,7 +77,7 @@ function lu_validate_field($field) {
 
 	if ('content' == $field['type']) {
 		$field['id'] = 'the_content';
-	} 	
+	} 
 
 	// If title is blank, try and set it to something reasonable
 	if (empty($field['title'])) {
@@ -116,7 +116,7 @@ function lu_post_type_title() {
 // Output icons on front end.
 function lu_status_icons($field) { ?>
 
-	<span class="dashicons dashicons-update lu-update" data-field="<?php echo $field['id']; ?>" data-type="<?php echo $field['type']; ?>" data-selector="<?php echo $field['selector']; ?>"></span>
+	<span class="dashicons dashicons-update lu-update" data-field="<?php echo $field['id']; ?>" data-type="<?php echo $field['type']; ?>" data-taxonomy="<?php echo $field['taxonomy']; ?>" data-selector="<?php echo $field['selector']; ?>"></span>
 	<span class="dashicons dashicons-yes" id="success-<?php echo $field['id']; ?>"></span>
 	<span class="loading" id="loading-<?php echo $field['id']; ?>"><img src="<?php echo LU_PLUGIN_URL . '/assets/images/ajax-loader.gif'; ?>"></span>
 

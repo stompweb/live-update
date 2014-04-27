@@ -14,6 +14,10 @@ function lu_update_value() {
 	$field_type = $_POST['field_type'];
 	$new_value = $_POST['new_value'];
 
+	if (isset($_POST['taxonomy'])) {
+		$taxonomy = $_POST['taxonomy'];
+	}
+
 	do_action('lu_before_save_values', $post_id, $new_value);
 
 	switch ($field_type) {
@@ -57,6 +61,16 @@ function lu_update_value() {
 			set_post_thumbnail( $post_id, absint($new_value) ); 
 
 			break;
+
+		case "taxonomy":
+
+			$post_terms = wp_get_post_terms( $post_id, $taxonomy, array("fields" => "ids"));
+			wp_remove_object_terms( $post_id, $post_terms, $taxonomy );
+			if (!empty($new_value)) {
+				wp_set_post_terms( $post_id, $new_value, $taxonomy );
+			}
+
+			break;	
 
 		case "email":
 
