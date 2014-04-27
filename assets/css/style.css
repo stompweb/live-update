@@ -63,9 +63,6 @@ body.customiser-open {
   padding: 15px 10px;
   border-bottom: 1px solid #EEEEEE;
 }
-.meta-boxes .meta-box:last-child {
-  padding-bottom: 50px;
-}
 .meta-boxes .meta-box h3 {
   margin: 0 0 15px 0;
   padding: 0;
