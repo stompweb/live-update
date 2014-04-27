@@ -23,8 +23,8 @@ body.customiser-open {
   width: 510px;
   min-height: 100%;
   max-height: 100%;
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
   background-color: #FFF;
   border-right: 1px solid #DDD;
 }
