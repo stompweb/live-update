@@ -103,41 +103,46 @@ function lu_add_customiser() {
 							        		<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" <?php checked( absint(get_post_meta(get_the_ID(), $field['id'], true), 1, true )); ?>>
 							        		<?php break;
 
-										case "taxonomy": 
-											global $post;
+										case "taxonomy": ?>
 
-											$post_terms = wp_get_post_terms( $post->ID, $field['taxonomy'], array("fields" => "ids"));
+											<div class="taxonomy-well">
+												<?php global $post;
 
-											$terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=0'); 
+												$post_terms = wp_get_post_terms( $post->ID, $field['taxonomy'], array("fields" => "ids"));
 
-											foreach ($terms as $term) { ?>
+												$terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=0'); 
 
-												<div class="checkbox-field">
+												foreach ($terms as $term) { ?>
 
-													<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $term->term_id; ?>" 
-														<?php if (in_array($term->term_id, $post_terms)) { echo 'checked'; } ?>
-													>
-													<?php echo $term->name; ?>
+													<div class="checkbox-field">
 
-												</div>
-
-												<?php 
-
-												$child_terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=' . $term->term_id);
-
-												foreach ($child_terms as $child_term) { ?>
-
-													<div class="checkbox-field checkbox-field-child">
-
-														<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $child_term->term_id; ?>" 
-															<?php if (in_array($child_term->term_id, $post_terms)) { echo 'checked'; } ?>
-													>
-														<?php echo $child_term->name; ?>
+														<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $term->term_id; ?>" 
+															<?php if (in_array($term->term_id, $post_terms)) { echo 'checked'; } ?>
+														>
+														<?php echo $term->name; ?>
 
 													</div>
 
-												<?php }	
-											}
+													<?php 
+
+													$child_terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=' . $term->term_id);
+
+													foreach ($child_terms as $child_term) { ?>
+
+														<div class="checkbox-field checkbox-field-child">
+
+															<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $child_term->term_id; ?>" 
+																<?php if (in_array($child_term->term_id, $post_terms)) { echo 'checked'; } ?>
+														>
+															<?php echo $child_term->name; ?>
+
+														</div>
+
+													<?php }	
+												} ?>
+
+											</div>
+											<?php
 											break;	
 							    
 							    		case "select": ?>
