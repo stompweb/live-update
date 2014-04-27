@@ -96,8 +96,11 @@ body.customiser-open {
 }
 .meta-boxes .meta-box .checkbox-field {
   clear: left;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   width: 100%;
+}
+.meta-boxes .meta-box .checkbox-field-child {
+  padding-left: 30px;
 }
 .meta-boxes .meta-box .wp-editor-wrap .wp-media-buttons {
   margin-bottom: 5px;
