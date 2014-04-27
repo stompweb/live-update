@@ -61,7 +61,7 @@ add_action( 'wp_enqueue_scripts', 'lu_stylesheets' );
 
 function lu_register_scripts() {
 
-    wp_register_script('live-update', LU_PLUGIN_URL . '/assets/js/main.min.js', null, null, true);
+    wp_register_script('live-update', LU_PLUGIN_URL . 'assets/js/main.min.js', null, null, true);
     
 }
 add_action( 'init', 'lu_register_scripts' );
