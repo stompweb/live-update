@@ -137,22 +137,19 @@ jQuery(document).ready(function($){
         switch (field_type) {
 
             case "select":
-                var new_value = $("select[name=lu_" + field_id).val();
-                break;
-
             case "author":
                 var new_value = $("select[name=lu_" + field_id).val();
-                break;                
+                break;
 
             case "textarea":
                 var new_value = $("textarea[name=lu_" + field_id).val();
                 break; 
 
             case "content":
+            case "wysiwyg":
                 var new_value = tinymce.get(field_id).getContent();
                 break; 
-
-            case "wysiwyg":
+            
                 var new_value = tinymce.get(field_id).getContent();
                 break;                 
 
