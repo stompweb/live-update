@@ -56,162 +56,7 @@ function lu_add_customiser() {
 
 									<h3><?php echo $field['title']; ?> <?php lu_status_icons($field); ?></h3>
 
-									<?php 
-									// TODO: image, file
-									switch ($field['type']) {
-							    
-							    		case "title": ?>
-							        		<input class="lu-field" type="text" id="lu_post_title" name="lu_post_title" value="<?php the_title(); ?>">
-							        		<?php
-							        		break;
-
-							    		case "text": ?>
-							        		<input class="lu-field" type="text" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
-							        		<?php 
-							        		break;
-
-							    		case "number": ?>
-							        		<input class="lu-field" type="number" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
-							        		<?php 
-							        		break;						        		
-
-										case "email": ?>
-							        		<input class="lu-field" type="email" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
-							        		<?php 
-							        		break;
-
-										case "date": ?>
-							        		<input class="lu-field datepicker" type="text" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
-							        		<?php 
-							        		break;
-
-							    		case "textarea": ?>
-							        		<textarea class="lu-field" name="lu_<?php echo $field['id']; ?>" rows="<?php echo $field['rows']; ?>"><?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?></textarea>
-							        		<?php break;
-
-										case "featured": 
-											$featured = absint(get_post_meta(get_the_ID(), $field['id'], true));
-											if ($featured) { ?>
-												<div class="dashicons dashicons-star-filled" id="lu_featured"></div>
-											<?php } else { ?>
-												<div class="dashicons dashicons-star-empty" id="lu_featured"></div>
-											<?php 
-											} 
-											break;	
-
-							    		case "checkbox": ?>
-							        		<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" <?php checked( absint(get_post_meta(get_the_ID(), $field['id'], true), 1, true )); ?>>
-							        		<?php break;
-
-										case "taxonomy": ?>
-
-											<div class="taxonomy-well">
-												<?php global $post;
-
-												$post_terms = wp_get_post_terms( $post->ID, $field['taxonomy'], array("fields" => "ids"));
-
-												$terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=0'); 
-
-												foreach ($terms as $term) { ?>
-
-													<div class="checkbox-field">
-
-														<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $term->term_id; ?>" 
-															<?php if (in_array($term->term_id, $post_terms)) { echo 'checked'; } ?>
-														>
-														<?php echo $term->name; ?>
-
-													</div>
-
-													<?php 
-
-													$child_terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=' . $term->term_id);
-
-													foreach ($child_terms as $child_term) { ?>
-
-														<div class="checkbox-field checkbox-field-child">
-
-															<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $child_term->term_id; ?>" 
-																<?php if (in_array($child_term->term_id, $post_terms)) { echo 'checked'; } ?>
-														>
-															<?php echo $child_term->name; ?>
-
-														</div>
-
-													<?php }	
-												} ?>
-
-											</div>
-											<?php
-											break;	
-							    
-							    		case "select": ?>
-											<select class="lu-field" name="lu_<?php echo $field['id']; ?>">
-											<?php 
-
-											foreach ($field['fields'] as $value => $option) { 
-												?>
-
-												<option value="<?php echo $value; ?>" <?php selected( get_post_meta(get_the_ID(), $field['id'], true), $value ); ?>>
-													<?php echo $option; ?>
-												</option>
-
-											<?php } ?>
-											</select>
-											<?php break;
-
-							    		case "content": 
-							    			wp_editor( get_the_content() , $field['id'], array('textarea_name' => 'lu_' . $field['id'], 'quicktags' => false, 'textarea_rows' => $field['rows'])  );
-							        		break;
-
-							        	case "wysiwyg": 
-							    			wp_editor( get_post_meta(get_the_ID(), $field['id'], true) , $field['id'], array('textarea_name' => 'lu_' . $field['id'], 'quicktags' => false, 'textarea_rows' => $field['rows'])  );
-							        		break;
-
-							        	case "author": 
-							        		global $post; ?>
-							    			<select class="lu-field" name="lu_<?php echo $field['id']; ?>">
-											<?php 
-
-											foreach ($field['users'] as $value => $option) { 
-												?>
-
-												<option value="<?php echo $value; ?>" <?php selected( $post->post_author, $value ); ?>>
-													<?php echo $option; ?>
-												</option>
-
-											<?php } ?>
-											</select>
-							        		<?php break;
-
-							    		case "featured-image": ?>
-
-
-							    			<?php if (has_post_thumbnail()) { 
-
-							    				$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'medium' );
-							    				?>
-							    				
-							    				<div style="position:relative">
-							    					<button class="upload_image_button existing-image" /><div class="dashicons dashicons-format-gallery"></div></button>
-							    					<input type="hidden" name="featured-image-id" value="">
-							    					<img src="<?php echo $featured_image[0]; ?>" class="featured-image">
-							    				</div>
-
-							    			<?php } else { ?>
-
-							    				<button class="upload_image_button" />Upload Image</button>
-
-							    				<div>
-							    					<input type="hidden" name="featured-image-id" value="">
-							    					<img src="" class="featured-image">
-							    				</div>
-
-							        		<?php 
-							        		}
-							        		break;
-										}
-									?>
+									<?php lm_render_field($field); ?>
 								</div>
 
 						<?php }
@@ -232,3 +77,160 @@ function lu_add_customiser() {
 
 <?php }
 add_action('wp_footer', 'lu_add_customiser');
+
+function lm_render_field($field) {
+	// TODO: image, file
+	switch ($field['type']) {
+
+		case "title": ?>
+    		<input class="lu-field" type="text" id="lu_post_title" name="lu_post_title" value="<?php the_title(); ?>">
+    		<?php
+    		break;
+
+		case "text": ?>
+    		<input class="lu-field" type="text" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
+    		<?php 
+    		break;
+
+		case "number": ?>
+    		<input class="lu-field" type="number" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
+    		<?php 
+    		break;						        		
+
+		case "email": ?>
+    		<input class="lu-field" type="email" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
+    		<?php 
+    		break;
+
+		case "date": ?>
+    		<input class="lu-field datepicker" type="text" name="lu_<?php echo $field['id']; ?>" value="<?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?>">
+    		<?php 
+    		break;
+
+		case "textarea": ?>
+    		<textarea class="lu-field" name="lu_<?php echo $field['id']; ?>" rows="<?php echo $field['rows']; ?>"><?php echo esc_attr(get_post_meta(get_the_ID(), $field['id'], true)); ?></textarea>
+    		<?php break;
+
+		case "featured": 
+			$featured = absint(get_post_meta(get_the_ID(), $field['id'], true));
+			if ($featured) { ?>
+				<div class="dashicons dashicons-star-filled" id="lu_featured"></div>
+			<?php } else { ?>
+				<div class="dashicons dashicons-star-empty" id="lu_featured"></div>
+			<?php 
+			} 
+			break;	
+
+		case "checkbox": ?>
+    		<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" <?php checked( absint(get_post_meta(get_the_ID(), $field['id'], true), 1, true )); ?>>
+    		<?php break;
+
+		case "taxonomy": ?>
+
+			<div class="taxonomy-well">
+				<?php global $post;
+
+				$post_terms = wp_get_post_terms( $post->ID, $field['taxonomy'], array("fields" => "ids"));
+
+				$terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=0'); 
+
+				foreach ($terms as $term) { ?>
+
+					<div class="checkbox-field">
+
+						<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $term->term_id; ?>" 
+							<?php if (in_array($term->term_id, $post_terms)) { echo 'checked'; } ?>
+						>
+						<?php echo $term->name; ?>
+
+					</div>
+
+					<?php 
+
+					$child_terms = get_terms($field['taxonomy'], 'hide_empty=0&parent=' . $term->term_id);
+
+					foreach ($child_terms as $child_term) { ?>
+
+						<div class="checkbox-field checkbox-field-child">
+
+							<input type="checkbox" name="lu_<?php echo $field['id']; ?>[]" value="<?php echo $child_term->term_id; ?>" 
+								<?php if (in_array($child_term->term_id, $post_terms)) { echo 'checked'; } ?>
+						>
+							<?php echo $child_term->name; ?>
+
+						</div>
+
+					<?php }	
+				} ?>
+
+			</div>
+			<?php
+			break;	
+
+		case "select": ?>
+			<select class="lu-field" name="lu_<?php echo $field['id']; ?>">
+			<?php 
+
+			foreach ($field['fields'] as $value => $option) { 
+				?>
+
+				<option value="<?php echo $value; ?>" <?php selected( get_post_meta(get_the_ID(), $field['id'], true), $value ); ?>>
+					<?php echo $option; ?>
+				</option>
+
+			<?php } ?>
+			</select>
+			<?php break;
+
+		case "content": 
+			wp_editor( get_the_content() , $field['id'], array('textarea_name' => 'lu_' . $field['id'], 'quicktags' => false, 'textarea_rows' => $field['rows'])  );
+    		break;
+
+    	case "wysiwyg": 
+			wp_editor( get_post_meta(get_the_ID(), $field['id'], true) , $field['id'], array('textarea_name' => 'lu_' . $field['id'], 'quicktags' => false, 'textarea_rows' => $field['rows'])  );
+    		break;
+
+    	case "author": 
+    		global $post; ?>
+			<select class="lu-field" name="lu_<?php echo $field['id']; ?>">
+			<?php 
+
+			foreach ($field['users'] as $value => $option) { 
+				?>
+
+				<option value="<?php echo $value; ?>" <?php selected( $post->post_author, $value ); ?>>
+					<?php echo $option; ?>
+				</option>
+
+			<?php } ?>
+			</select>
+    		<?php break;
+
+		case "featured-image": ?>
+
+
+			<?php if (has_post_thumbnail()) { 
+
+				$featured_image = wp_get_attachment_image_src( get_post_thumbnail_id(get_the_ID()), 'medium' );
+				?>
+				
+				<div style="position:relative">
+					<button class="upload_image_button existing-image" /><div class="dashicons dashicons-format-gallery"></div></button>
+					<input type="hidden" name="featured-image-id" value="">
+					<img src="<?php echo $featured_image[0]; ?>" class="featured-image">
+				</div>
+
+			<?php } else { ?>
+
+				<button class="upload_image_button" />Upload Image</button>
+
+				<div>
+					<input type="hidden" name="featured-image-id" value="">
+					<img src="" class="featured-image">
+				</div>
+
+    		<?php 
+    		}
+    	break;
+	}
+}
