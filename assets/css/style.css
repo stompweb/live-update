@@ -1,6 +1,6 @@
 .customiser-open-button {
   position: fixed;
-  bottom: 10px;
+  top: 18px;
   left: 10px;
   color: #666;
   background-color: #DDD;
@@ -22,6 +22,9 @@ body.customiser-open {
   z-index: 9999;
   width: 510px;
   min-height: 100%;
+  max-height: 100%;
+  overflow-x: scroll;
+  overflow-y: scroll;
   background-color: #FFF;
   border-right: 1px solid #DDD;
 }
@@ -44,9 +47,10 @@ body.customiser-open {
 }
 .customiser .customiser-close-button {
   position: absolute;
-  bottom: 10px;
+  top: 20px;
   right: 10px;
   color: #666;
+  height: 20px;
   background-color: #DDD;
   border-radius: 5px;
 }
@@ -58,6 +62,9 @@ body.customiser-open {
 .meta-boxes .meta-box {
   padding: 15px 10px;
   border-bottom: 1px solid #EEEEEE;
+}
+.meta-boxes .meta-box:last-child {
+  padding-bottom: 50px;
 }
 .meta-boxes .meta-box h3 {
   margin: 0 0 15px 0;
@@ -195,6 +202,6 @@ body.customiser-open {
 body.admin-bar .customiser {
   margin-top: 32px;
 }
-body.admin-bar .customiser-close-button {
-  bottom: 42px;
+body.admin-bar .customiser-open-button {
+  top: 48px;
 }
