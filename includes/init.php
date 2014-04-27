@@ -189,6 +189,17 @@ function lm_render_field($field) {
     	case "wysiwyg": 
 			wp_editor( get_post_meta(get_the_ID(), $field['id'], true) , $field['id'], array('textarea_name' => 'lu_' . $field['id'], 'quicktags' => false, 'textarea_rows' => $field['rows'])  );
     		break;
+		
+		case "page_template": 
+			
+			$current_template = get_post_meta(get_the_ID(), '_wp_page_template', true);?>
+			
+			<select class="lu-field" name="lu_<?php echo $field['id']; ?>">
+				<option value='default'>Default Template</option>
+				<?php page_template_dropdown($current_template); ?>
+			</select>
+    		
+    		<?php break;
 
     	case "author": 
     		global $post; ?>
