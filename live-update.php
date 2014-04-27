@@ -2,7 +2,7 @@
 /**
  * Plugin Name:	Live Update
  * Plugin URI:	http://github.com/stompweb/live-update
- * Description:	Edit Post Date & Meta Fields on the front end
+ * Description:	Edit Post Data & Meta Fields on the front end
  * Version: 	0.1
  * Author: 		Steven Jones
  * Author URI: 	http://stomptheweb.co.uk
