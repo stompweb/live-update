@@ -60,6 +60,11 @@ function lu_get_users_for_authors() {
 
 }
 
+/* 
+ * Some built in functions do not require the user to add details to them
+ * The idea of this function is to fill in the gaps which therefore makes
+ * the usability better and quicker to setup. 
+ */
 function lu_validate_field($field) {
 
 	// Some fields do not need IDs so automatically add them
