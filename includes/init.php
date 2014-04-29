@@ -42,7 +42,7 @@ function lu_add_customiser() {
 
 					<form>
 
-						<?
+						<?php
 						
 						foreach ($meta_boxes as $meta_box) {
 						
@@ -61,11 +61,11 @@ function lu_add_customiser() {
 
 						<?php }
 
-						}
+						} ?>
 
-					} ?>
+					</form>
 
-				</form>
+				<?php } ?>
 			
 				<a class="customiser-close-button"><div class="dashicons dashicons-arrow-left"></div></div></a>
 
