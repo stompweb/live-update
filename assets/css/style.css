@@ -27,6 +27,7 @@ body.customiser-open {
   overflow-x: hidden;
   overflow-y: auto;
   background-color: #FFF;
+  color: #000;
   border-right: 1px solid #DDD;
 }
 .customiser .customiser-inner {
